@@ -1,0 +1,51 @@
+// Simplified Jenkinsfile for testing environment variable parsing
+
+def clusters = ['dev', 'staging', 'prod']
+
+pipeline {
+  agent any
+  
+  environment {
+    BUILD_ENV = 'test'
+    NODE_VERSION = '18'
+    APP_PORT = '3000'
+  }
+  
+  stages {
+    stage('Setup') {
+      steps {
+        script {
+          clusters.each { cluster ->
+            env.CLUSTER_NAME = cluster
+            env.DATABASE_URL = "postgres://db.${cluster}.example.com"
+            env.REDIS_URL = "redis://cache.${cluster}.example.com"
+            
+            if (cluster == 'prod') {
+              env.LOG_LEVEL = 'warn'
+              env.DEBUG_MODE = 'false'
+              env.REPLICA_COUNT = '3'
+            } else {
+              env.LOG_LEVEL = 'debug'
+              env.DEBUG_MODE = 'true' 
+              env.REPLICA_COUNT = '1'
+            }
+            
+            env.API_BASE_URL = "https://api.${cluster}.example.com"
+            env.CDN_URL = "https://cdn.${cluster}.example.com"
+            env.MONITORING_ENABLED = 'true'
+          }
+        }
+      }
+    }
+    
+    stage('Deploy') {
+      steps {
+        script {
+          env.DEPLOYMENT_TIME = new Date().toString()
+          env.BUILD_NUMBER = "${BUILD_NUMBER}"
+          env.GIT_COMMIT = "${GIT_COMMIT}"
+        }
+      }
+    }
+  }
+}

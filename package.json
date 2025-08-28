@@ -1,0 +1,31 @@
+{
+  "name": "envchecker",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "envchecker": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc && chmod +x ./dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "start": "npm run build && node dist/index.js",
+    "test": "node --test test/integration.test.js",
+    "test:watch": "node --test --watch test/integration.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "zod": "^4.1.4"
+  }
+}

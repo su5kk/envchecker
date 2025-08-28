@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+        - name: test-container
+          image: test:latest
+          env:
+            - name: LOG_LEVEL
+              value: $LOG_LEVEL
+            - name: API_TOKEN
+              value: "$MISSING_TOKEN"
+            - name: STATIC_VALUE
+              value: "not-a-variable"
+            - name: GOMAXPROCS
+              value: $GOMAXPROCS
