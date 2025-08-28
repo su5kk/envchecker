@@ -1,5 +1,5 @@
 {
-  "name": "envchecker",
+  "name": "@su5kk/envchecker",
   "version": "1.0.0",
   "main": "dist/index.js",
   "type": "module",
@@ -14,10 +14,18 @@
     "test": "node --test test/integration.test.js",
     "test:watch": "node --test --watch test/integration.test.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["kubernetes", "environment-variables", "deployment", "validation", "devops", "cli"],
+  "author": "su5kk",
   "license": "ISC",
-  "description": "",
+  "description": "CLI tool to validate environment variables in Kubernetes deployments against reference files",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/su5kk/envchecker.git"
+  },
+  "homepage": "https://github.com/su5kk/envchecker#readme",
+  "bugs": {
+    "url": "https://github.com/su5kk/envchecker/issues"
+  },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.3.0",

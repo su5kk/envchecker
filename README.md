@@ -11,16 +11,29 @@ A CLI tool written in Typescript to check environment variables consistency for 
 ## Installation
 
 ### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+- Node.js 18+
 
-### Install Dependencies
+### Quick Start (Recommended)
 ```bash
-npm install
+# Run directly without installation
+npx @su5kk/envchecker <deployment-file> <env-file>
 ```
 
-### Build the CLI
+### Global Installation
 ```bash
+# Install once, use anywhere
+npm install -g @su5kk/envchecker
+
+# Then use directly
+envchecker <deployment-file> <env-file>
+```
+
+### Development Installation
+```bash
+# Clone and build from source
+git clone https://github.com/timtursunov/envchecker.git
+cd envchecker
+npm install
 npm run build
 ```
 
@@ -28,23 +41,26 @@ npm run build
 
 ### Basic Usage
 ```bash
-# Using npm start (development)
-npm start <deployment-file> <env-vars-file>
+# Using npx (recommended)
+npx @su5kk/envchecker <deployment-file> <env-vars-file>
 
-# Using built CLI
-npx envchecker <deployment-file> <env-vars-file>
+# If installed globally
+envchecker <deployment-file> <env-vars-file>
+
+# Development mode
+npm start <deployment-file> <env-vars-file>
 ```
 
 ### Examples
 
 #### Validate against .env file
 ```bash
-npm start test/fixtures/deployments/simple-deployment.yml test/fixtures/env-files/valid.env
+npx @su5kk/envchecker deployment.yml .env
 ```
 
 #### Validate against Jenkinsfile
 ```bash
-npm start test/fixtures/deployments/test-deployment.yml test/fixtures/jenkinsfiles/Jenkinsfile.simple
+npx @su5kk/envchecker deployment.yml Jenkinsfile
 ```
 
 ### Sample Output
